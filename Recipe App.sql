@@ -17,7 +17,8 @@ CREATE TABLE recipes (
   servings text,
   category category NOT NULL,
   vegetarian boolean,
-  created_at timestamp without time zone NOT NULL
+  created_at timestamp without time zone NOT NULL,
+  featured boolean,
 );
 
 CREATE TABLE ingredients (
@@ -55,5 +56,6 @@ CREATE TABLE users (
   username text NOT NULL UNIQUE,
   email text NOT NULL UNIQUE,
   password_hash text NOT NULL,
-  token uuid
+  token uuid,
+  is_admin boolean NOT NULL
 );
