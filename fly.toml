@@ -13,7 +13,7 @@ processes = []
   NODE_ENV = "production"
   FRONTEND_BASE_URL_IP = "http://192.168.1.129:3000"
   FRONTEND_BASE_URL_LOCAL = "http://localhost:3000"
-  FRONTEND_BASE_URL_PROD = "https://glasser-recipes.herokuapp.com"
+  FRONTEND_BASE_URL_PROD = "https://glasser-recipes.netlify.app"
 
 [experimental]
   allowed_public_ports = []
