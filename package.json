@@ -1,25 +1,35 @@
 {
   "name": "recipes-backend",
-  "version": "1.0.0",
-  "description": "Recipes API with Node and PostgresSQL",
-  "main": "server.js",
-  "scripts": {
-    "start": "nodemon server.js"
-  },
+  "version": "2.0.0",
+  "main": "index.ts",
+  "repository": "git@github.com:marla-hoggard/recipes-backend.git",
+  "author": "Marla Hoggard <marlabhoggard@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "start:prod": "node dist/index.js",
+    "build": "tsc",
+    "clean": "rm -rf dist"
+  },
   "dependencies": {
-    "bcrypt": "^4",
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "knex": "^0.21.3",
-    "pg": "^8.3.0",
-    "uuid": "^8.3.1"
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "mongoose": "^8.18.0",
+    "uuid": "^12.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
-  },
-  "engines": {
-    "node": "12.x"
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^24.3.1",
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
   }
 }
