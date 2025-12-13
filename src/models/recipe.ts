@@ -17,7 +17,7 @@ export interface IRecipe {
   source: string | null;
   source_url: string | null;
   submitted_by: string;
-  servings: string | number; // TODO: Currently strings, should be number?
+  servings: string | number | null; // TODO: Currently strings, should be number?
   category: Category;
   vegetarian: boolean;
   created_at: Date;
@@ -34,7 +34,7 @@ const RecipeSchema = new Schema<IRecipe>({
   source: { type: String, default: null },
   source_url: { type: String, required: false },
   submitted_by: { type: String, required: true },
-  servings: { type: Schema.Types.Mixed, required: true }, // TODO: Currently strings, should be number?
+  servings: { type: Schema.Types.Mixed, default: null }, // TODO: Currently strings, should be number?
   category: {
     type: String,
     required: true,
