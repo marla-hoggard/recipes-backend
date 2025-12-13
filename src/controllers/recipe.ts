@@ -96,13 +96,18 @@ export const createRecipe = async (req: AuthedRequest, res: Response) => {
     footnotes: req.body.footnotes || [],
   };
 
-  const result = await Recipe.insertOne(newRecipe);
-  if (!result) {
-    return res.status(400).json({
-      message: 'Error creating recipe. Please check the data and try again.',
-    });
+  try {
+    const result = await Recipe.insertOne(newRecipe);
+    if (!result) {
+      return res.status(400).json({
+        message: 'Error creating recipe. Please check the data and try again.',
+      });
+    }
+    return res.status(200).json({ id: result.id, title: result.title });
+  } catch (error) {
+    console.error('Error creating recipe:', error);
+    return res.status(400).json({ error: { message: (error as any).message } });
   }
-  return res.status(200).json({ id: result.id, title: result.title });
 };
 
 export const editRecipe = async (req: AuthedRequest, res: Response) => {
