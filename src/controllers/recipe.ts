@@ -5,8 +5,13 @@ import { AuthedRequest, OpenRequest, Response } from '../types';
  * Returns all recipes, sorted alphabetically by title.
  */
 export const getAllRecipes = async (req: OpenRequest, res: Response) => {
-  const recipes = await Recipe.find({}).sort({ title: 1 }).lean();
-  return res.status(200).json({ data: recipes });
+  try {
+    const recipes = await Recipe.find({}).sort({ title: 1 }).lean();
+    return res.status(200).json({ data: recipes });
+  } catch (error) {
+    console.error('Error fetching recipes:', error);
+    return res.status(500).json({ error: { message: 'Error fetching recipes. Please try again later.' } });
+  }
 };
 
 /**
@@ -161,13 +166,18 @@ export const editRecipe = async (req: AuthedRequest, res: Response) => {
     )
   );
 
-  const result = await Recipe.findOneAndUpdate({ id }, { $set: updatedRecipe }, { new: true });
-  if (!result) {
-    return res.status(404).json({
-      message: 'Recipe not found. Please check the ID and try again.',
-    });
+  try {
+    const result = await Recipe.findOneAndUpdate({ id }, { $set: updatedRecipe }, { new: true });
+    if (!result) {
+      return res.status(404).json({
+        message: 'Recipe not found. Please check the ID and try again.',
+      });
+    }
+    return res.status(200).json({ id: result.id, title: result.title });
+  } catch (error) {
+    console.error('Error updating recipe:', error);
+    return res.status(400).json({ error: { message: (error as any).message } });
   }
-  return res.status(200).json({ id: result.id, title: result.title });
 };
 
 /**
@@ -297,8 +307,13 @@ export const searchRecipes = async (req: OpenRequest, res: Response) => {
     return res.status(200).json({ data });
   }
 
-  const data = await Recipe.find(filter).sort({ title: 1 }).lean();
-  res.status(200).json({ data });
+  try {
+    const data = await Recipe.find(filter).sort({ title: 1 }).lean();
+    res.status(200).json({ data });
+  } catch (error) {
+    console.error('Error searching for recipes:', error, 'with filter:', filter);
+    res.status(500).json({ error: { message: (error as any).message } });
+  }
 };
 
 /**
