@@ -12,7 +12,6 @@ kill_timeout = "5s"
   auto_rollback = true
 
 [build]
-  builder = "heroku/builder:22"
 
 [env]
   FRONTEND_BASE_URL_IP = "http://192.168.1.129:3000"
