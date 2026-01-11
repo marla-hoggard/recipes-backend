@@ -1,0 +1,363 @@
+[
+  {
+    "id": 1,
+    "footnote": "If using candied nuts, add them to the pan after you season the apples and raisins.",
+    "recipe_order": 0,
+    "recipe_id": 4
+  },
+  {
+    "id": 2,
+    "footnote": "I like to use a spritz of lemon juice and a garlic/herb mix",
+    "recipe_order": 1,
+    "recipe_id": 4
+  },
+  {
+    "id": 9,
+    "footnote": "There was too much of the half-and-half mixture for the 9\" round baking dish. Try using 2 cups of half-and-half and 2 eggs if using a 9\" round dish.",
+    "recipe_order": 0,
+    "recipe_id": 7
+  },
+  {
+    "id": 11,
+    "footnote": "If prepping in advance, stop here.  Cover and refrigerate.  To continue, remove from fridge and let sit for 30 minutes before finishing.",
+    "recipe_order": 0,
+    "recipe_id": 13
+  },
+  {
+    "id": 13,
+    "footnote": "Or you can score the edge with a sharp knife, wrap a long piece of dental floss around the cheese in the score, and then pull the ends of the floss to halve the cheese horizontally.",
+    "recipe_order": 0,
+    "recipe_id": 15
+  },
+  {
+    "id": 14,
+    "footnote": "If using chutney, you might want to add it right before serving so that it doesn’t stick to the plastic wrap.",
+    "recipe_order": 0,
+    "recipe_id": 27
+  },
+  { "id": 22, "footnote": "Skip this step if frosting the cake.", "recipe_order": 0, "recipe_id": 52 },
+  {
+    "id": 24,
+    "footnote": "The chocolate layer cake was not all that special, considering the effort and expense.  I might use a denser, easier recipe instead",
+    "recipe_order": 0,
+    "recipe_id": 58
+  },
+  {
+    "id": 25,
+    "footnote": "The crust was meant for a 9” pie plate.  It would also work well in a 10” tart pan and perhaps a 9” tart pan.  If you use this crust in a recipe where you are not baking the filling, it is probably best to bake the crust until set, about 8 minutes. Cool before filling.",
+    "recipe_order": 0,
+    "recipe_id": 62
+  },
+  {
+    "id": 26,
+    "footnote": "The original recipe called for aluminum foil, but the cookies were very difficult to remove from the foil.  If you don’t have parchment paper, maybe try greasing the foil.",
+    "recipe_order": 0,
+    "recipe_id": 74
+  },
+  {
+    "id": 27,
+    "footnote": "If you bake one sheet at a time, bake it on the lower rack.",
+    "recipe_order": 1,
+    "recipe_id": 74
+  },
+  {
+    "id": 28,
+    "footnote": "I had difficulty with this.  I also melted chocolate on the stove and drizzled it with a fork.",
+    "recipe_order": 0,
+    "recipe_id": 75
+  },
+  {
+    "id": 31,
+    "footnote": "If using pasta, add it to the soup when the remaining cooking time is equal to the amount of time the pasta needs to cook.",
+    "recipe_order": 0,
+    "recipe_id": 88
+  },
+  {
+    "id": 32,
+    "footnote": "This would probably be main-course servings.  I omitted chicken, doubled recipe.  I served 11 appetizer portions, and had lots left over.  Single recipe probably makes about 8 appetizer portions.",
+    "recipe_order": 1,
+    "recipe_id": 88
+  },
+  {
+    "id": 34,
+    "footnote": "These vegetables were rather boring. David added some canned baby corn. Might want to substitute or add something tastier. Also, there is nothing hot in this. May want to add crushed red pepper flakes.",
+    "recipe_order": 0,
+    "recipe_id": 110
+  },
+  {
+    "id": 35,
+    "footnote": "I used packaged cleaned and shredded Brussels sprouts instead.",
+    "recipe_order": 0,
+    "recipe_id": 118
+  },
+  {
+    "id": 37,
+    "footnote": "If using cooked chicken or turkey, cut into bite-size pieces.  Combine all ingredients in saucepan except turkey and coconut milk.  Brought to boiling; reduced heat.  Simmered, covered, for 10 minutes.  Add meat at end with coconut milk.",
+    "recipe_order": 0,
+    "recipe_id": 161
+  },
+  {
+    "id": 38,
+    "footnote": "Also made using ~5 pounds of very thick striped bass fillets.  Tripled sauce and baked at 400° for ~30 minutes.",
+    "recipe_order": 0,
+    "recipe_id": 180
+  },
+  {
+    "id": 40,
+    "footnote": "Also used half recipe to marinate 1 pound mahi mahi fillet.  Baked at 400° for ~12 minutes.  Served 3.",
+    "recipe_order": 0,
+    "recipe_id": 181
+  },
+  { "id": 42, "footnote": "Doubles well.", "recipe_order": 0, "recipe_id": 183 },
+  {
+    "id": 48,
+    "footnote": "If you have a lot of thin little fillets, you can make 2 layers, coating each layer.",
+    "recipe_order": 0,
+    "recipe_id": 186
+  },
+  { "id": 49, "footnote": "Halves well.", "recipe_order": 1, "recipe_id": 186 },
+  {
+    "id": 50,
+    "footnote": "Alternatively, you can place fish skin-side down on a broiler pan coated with vegetable spray.  Cook 5\" - 6\" from heat for 10 - 13 minutes.",
+    "recipe_order": 0,
+    "recipe_id": 187
+  },
+  {
+    "id": 51,
+    "footnote": "Do not refrigerate in baking bowl or it will be difficult to remove.",
+    "recipe_order": 0,
+    "recipe_id": 188
+  },
+  {
+    "id": 52,
+    "footnote": "If frozen, let stand at room temperature 1 hour before proceeding.",
+    "recipe_order": 0,
+    "recipe_id": 193
+  },
+  { "id": 53, "footnote": "Halves well.  Use 8-ounce round of Brie.", "recipe_order": 1, "recipe_id": 193 },
+  {
+    "id": 54,
+    "footnote": "Use your imagination to create other combinations of flavors.",
+    "recipe_order": 0,
+    "recipe_id": 194
+  },
+  {
+    "id": 55,
+    "footnote": "Number of servings varies according to how many shells are used.",
+    "recipe_order": 1,
+    "recipe_id": 194
+  },
+  {
+    "id": 60,
+    "footnote": "If using regular pearl barley, heat broth, barley, basil, and pepper to boiling; simmer, covered, for 35 minutes.  Add green onions and mushrooms.  Then continue from Step 2.",
+    "recipe_order": 0,
+    "recipe_id": 198
+  },
+  { "id": 61, "footnote": "Can be prepared in advance and baked later.", "recipe_order": 0, "recipe_id": 199 },
+  {
+    "id": 62,
+    "footnote": "If prepared ahead, refrigerate or freeze filling separately from crust.",
+    "recipe_order": 0,
+    "recipe_id": 204
+  },
+  { "id": 63, "footnote": "Can be doubled and cooked in an 11” x 14” pan.", "recipe_order": 0, "recipe_id": 211 },
+  {
+    "id": 15,
+    "footnote": "I left out the Caramel Sauce.  Instead, I used ¾ cup Chocolate Truffle Sauce on the bottom layer and the remaining sauce on the top layer.",
+    "recipe_order": 0,
+    "recipe_id": 37
+  },
+  {
+    "id": 16,
+    "footnote": "If you use the Caramel Sauce, you will only need ½ cup of the Chocolate Truffle Sauce.  This recipe makes 2 cups.",
+    "recipe_order": 1,
+    "recipe_id": 37
+  },
+  {
+    "id": 23,
+    "footnote": "It was difficult to incorporate chips into the dough.  After pressing some dough with chips in ¼-cup measure, I molded the dough and chips, put dough on cookie sheets, and then pressed additional chips into the dough.",
+    "recipe_order": 0,
+    "recipe_id": 56
+  },
+  { "id": 97, "footnote": "Dressing can be made ahead and refrigerated.", "recipe_order": 0, "recipe_id": 247 },
+  {
+    "id": 41,
+    "footnote": "Also microwaved ¾ pound of mahi mahi on high for 10 minutes. Served 2.",
+    "recipe_order": 1,
+    "recipe_id": 181
+  },
+  { "id": 98, "footnote": "Can add crumbled goat cheese or feta.", "recipe_order": 1, "recipe_id": 247 },
+  {
+    "id": 19,
+    "footnote": "Made 2 batches.  Used ~4⅓ lbs. boneless chicken breasts in one batch and baked ~30 minutes.  Used ~6 lbs. boneless chicken thighs in other batch and baked ~40 minutes.",
+    "recipe_order": 0,
+    "recipe_id": 47
+  },
+  {
+    "id": 96,
+    "footnote": "I halved the recipe and used an 8\" x 8\" baking dish.  I used a Genuardi's baguette and used 16 one-inch slices to fit the dish.  I used extra blueberries to cover, about ¼ - ½ cup.",
+    "recipe_order": 0,
+    "recipe_id": 14
+  },
+  {
+    "id": 99,
+    "footnote": "The vinaigrette is so good that I would save time and buy cooked shrimp and toss it with the vinaigrette.",
+    "recipe_order": 0,
+    "recipe_id": 248
+  },
+  {
+    "id": 100,
+    "footnote": "Alternatively, you can toss everything together in a large bowl.",
+    "recipe_order": 1,
+    "recipe_id": 248
+  },
+  { "id": 101, "footnote": "I use food processor to grate.", "recipe_order": 0, "recipe_id": 250 },
+  {
+    "id": 102,
+    "footnote": "This is a lot of mustard sauce.  You could try making ⅔ of the recipe or use 3 pounds of potatoes instead.",
+    "recipe_order": 0,
+    "recipe_id": 252
+  },
+  {
+    "id": 103,
+    "footnote": "I stirred in some bite-sized pieces of cooked chicken at the end and heated through.  I have also stirred in cut-up raw shrimp and broccoli cut into tiny florets.",
+    "recipe_order": 0,
+    "recipe_id": 160
+  },
+  {
+    "id": 104,
+    "footnote": "Variation:  Eliminate eggs.  Process pâté until smooth.  Stir in ¼ cup currants (or more) soaked in brandy or liqueur (used Triple Sec) and drained.  I halved the variation version of the recipe and it made ~2 cups.",
+    "recipe_order": 0,
+    "recipe_id": 207
+  },
+  {
+    "id": 105,
+    "footnote": "If you don’t have a food processor, everything may be done by hand (except beating the egg whites).",
+    "recipe_order": 0,
+    "recipe_id": 43
+  },
+  {
+    "id": 106,
+    "footnote": "We always serve this on Rosh Hashanah, but it is delicious any time!",
+    "recipe_order": 1,
+    "recipe_id": 43
+  },
+  { "id": 107, "footnote": "Can be fully prepared in advance without baking.", "recipe_order": 2, "recipe_id": 43 },
+  {
+    "id": 108,
+    "footnote": "10 oz. spring mix and ½ recipe of dressing works well.  Serves ~12.",
+    "recipe_order": 0,
+    "recipe_id": 178
+  },
+  {
+    "id": 109,
+    "footnote": "Made a salsa with pineapple, peaches, sweet onion, crystallized ginger, lime juice, powdered ginger and coriander and garlic.",
+    "recipe_order": 0,
+    "recipe_id": 50
+  },
+  {
+    "id": 110,
+    "footnote": "This is also a good preparation for boneless chicken.  I baked thighs at 350° - 375° for ~15 - 20 minutes.",
+    "recipe_order": 1,
+    "recipe_id": 50
+  },
+  {
+    "id": 111,
+    "footnote": "You can make the cakes a bit smaller to feed 6.  Or you can increase the amount of each ingredient by ⅓.  (See measurements in parentheses.)",
+    "recipe_order": 0,
+    "recipe_id": 185
+  },
+  {
+    "id": 112,
+    "footnote": "This can be done 2 - 3 hours in advance.  Cover and chill.",
+    "recipe_order": 1,
+    "recipe_id": 185
+  },
+  {
+    "id": 113,
+    "footnote": "Can also be made into small cakes and served as hors d'oeuvres.",
+    "recipe_order": 2,
+    "recipe_id": 185
+  },
+  {
+    "id": 114,
+    "footnote": "This is good with the Mango Puree.  See recipe in \"Sauces and Dressings.\"",
+    "recipe_order": 3,
+    "recipe_id": 185
+  },
+  {
+    "id": 115,
+    "footnote": "Original recipe is supposed to serve 4 as an entrée or 8 as an appetizer.  I made ¾ of the recipe and it easily served 4.  There was a lot of leftover glaze.",
+    "recipe_order": 0,
+    "recipe_id": 167
+  },
+  {
+    "id": 116,
+    "footnote": "I also made ½ recipe of glaze and used 5 boneless chicken thighs, cut into strips.  Skewered with zucchini.  Served 3 generously, with a bit of leftover glaze.",
+    "recipe_order": 1,
+    "recipe_id": 167
+  },
+  { "id": 117, "footnote": "Halves well.", "recipe_order": 0, "recipe_id": 200 },
+  {
+    "id": 118,
+    "footnote": "May be prepared in advance, covered and refrigerated until ready to bake.  If prepared in advance bring to room temperature before baking or add 15 minutes to baking time.",
+    "recipe_order": 0,
+    "recipe_id": 83
+  },
+  { "id": 119, "footnote": "Halves well.  Use 1½-quart baking dish.", "recipe_order": 1, "recipe_id": 83 },
+  {
+    "id": 120,
+    "footnote": "Can dust with powdered sugar when still slightly warm.",
+    "recipe_order": 0,
+    "recipe_id": 99
+  },
+  {
+    "id": 121,
+    "footnote": "I used an 8½\" springform pan and baked the cake for ~30 minutes.",
+    "recipe_order": 0,
+    "recipe_id": 63
+  },
+  {
+    "id": 122,
+    "footnote": "Alternatively, you can place on a baking sheet and heat at 350° until done.",
+    "recipe_order": 0,
+    "recipe_id": 262
+  },
+  {
+    "id": 123,
+    "footnote": "To make in advance, chill at this point.  30 minutes before serving, bring to room temperature.  Then continue with recipe, tossing until heated through.",
+    "recipe_order": 0,
+    "recipe_id": 267
+  },
+  {
+    "id": 124,
+    "footnote": "There will be leftover dough.  Can roll up extra dough with cheese.",
+    "recipe_order": 0,
+    "recipe_id": 270
+  },
+  {
+    "id": 127,
+    "footnote": "It is best to mix with alcohol in the mug when serving rather than spiking it on the stove. Guests can spike it to taste (or skip the booze), the cider will last longer, and the alcohol won't cook off.",
+    "recipe_order": 0,
+    "recipe_id": 271
+  },
+  {
+    "id": 128,
+    "footnote": "These freeze well, but don’t roll in coconut until thawed.",
+    "recipe_order": 0,
+    "recipe_id": 277
+  },
+  {
+    "id": 129,
+    "footnote": "Alternatively, you can stir in the coconut and serve it as a dip with celery and carrot sticks.",
+    "recipe_order": 1,
+    "recipe_id": 277
+  },
+  {
+    "id": 130,
+    "footnote": "You can cover and freeze at this point up to 1 month.  To defrost, microwave on low (30%) uncovered for 20 minutes.",
+    "recipe_order": 0,
+    "recipe_id": 279
+  },
+  { "id": 131, "footnote": "This can also be made on top of the stove.", "recipe_order": 0, "recipe_id": 283 }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "first_name": "Marla",
+    "last_name": "Hoggard",
+    "username": "mhoggard",
+    "email": "marlabhoggard@gmail.com",
+    "password_hash": "$2b$10$Js1u2dqJU4HWtmhuANVeB.cH7OM8NjFZU7zSawqWI1eGTEbH0hEzm",
+    "token": "47479de9-caa5-4cb3-b86c-90fcfbf3a65d",
+    "is_admin": true
+  },
+  {
+    "id": 2,
+    "first_name": "Lynne",
+    "last_name": "Glasser",
+    "username": "lglasser",
+    "email": "lynne.glasser@gmail.com",
+    "password_hash": "$2b$10$tuh4dM2kR73oTUS5hGkwwezGU0apZ5j0YF4P6VYRKMYp2FODNzc3i",
+    "token": "0caaac9e-f4fb-412f-90cd-2101b2d5e5a4",
+    "is_admin": false
+  }
+]

@@ -28,7 +28,7 @@ export interface IRecipe {
   steps: string[];
 }
 
-const RecipeSchema = new Schema<IRecipe>({
+export const RecipeSchema = new Schema<IRecipe>({
   id: { type: Number, required: true, unique: true }, // TODO: Decide what to do about this
   title: { type: String, required: true, default: null },
   source: { type: String, default: null },
