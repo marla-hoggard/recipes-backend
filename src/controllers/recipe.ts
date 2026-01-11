@@ -317,6 +317,31 @@ export const searchRecipes = async (req: OpenRequest, res: Response) => {
 };
 
 /**
+ * Deletes a recipe by its postgres `recipe.id` (not its mongo _id).
+ * Returns the deleted recipe on success.
+ */
+export const deleteRecipe = async (req: AuthedRequest, res: Response) => {
+  const id = parseInt(req.params.id, 10);
+
+  if (isNaN(id)) {
+    return res.status(400).json({ error: 'Invalid recipe ID' });
+  }
+
+  try {
+    const result = await Recipe.findOneAndDelete({ id });
+    if (!result) {
+      return res.status(404).json({
+        message: 'Recipe not found. Please check the ID and try again.',
+      });
+    }
+    return res.status(200).json({ success: true, deletedRecipe: result });
+  } catch (error) {
+    console.error('Error deleting recipe:', error);
+    return res.status(500).json({ error: { message: 'Error deleting recipe. Please try again later.' } });
+  }
+};
+
+/**
  * Returns the values of the Category enum
  */
 export const listCategories = async (req: OpenRequest, res: Response) => {

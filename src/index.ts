@@ -52,6 +52,7 @@ app.get('/recipe/:id', Recipe.getRecipeById);
 app.post('/recipe/new', Recipe.createRecipe); // TODO: Require auth and send it in request
 app.put('/recipe/:id', Recipe.editRecipe); // TODO: Require auth and that user is admin or matches "submitted by"
 app.get('/search', Recipe.searchRecipes);
+app.delete('/recipe/:id', Recipe.deleteRecipe); // TODO: Require auth and that user is admin or matches "submitted by"
 
 app.get('/categories', Recipe.listCategories);
 app.get('/tags', Recipe.listTags);
