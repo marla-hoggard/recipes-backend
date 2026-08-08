@@ -23,7 +23,7 @@ export const getAllRecipes = async (req: OpenRequest, res: Response) => {
 export const getRecipeById = async (req: OpenRequest, res: Response) => {
   const id = parseInt(req.params.id, 10);
   if (isNaN(id)) {
-    return res.status(400).json({ error: 'Invalid recipe ID' });
+    return res.status(400).json({ error: { message: 'Invalid recipe ID' } });
   }
 
   // TODO: Consider using _id or slug and getting rid of the legacy id field
@@ -31,7 +31,7 @@ export const getRecipeById = async (req: OpenRequest, res: Response) => {
   if (result) {
     return res.status(200).json(result);
   }
-  return res.status(404).json({ error: 'Recipe not found' });
+  return res.status(404).json({ error: { message: 'Recipe not found' } });
 };
 
 export const createRecipe = async (req: AuthedRequest, res: Response) => {
@@ -105,7 +105,7 @@ export const createRecipe = async (req: AuthedRequest, res: Response) => {
     const result = await Recipe.insertOne(newRecipe);
     if (!result) {
       return res.status(400).json({
-        message: 'Error creating recipe. Please check the data and try again.',
+        error: { message: 'Error creating recipe. Please check the data and try again.' },
       });
     }
     return res.status(200).json({ id: result.id, title: result.title });
@@ -170,7 +170,7 @@ export const editRecipe = async (req: AuthedRequest, res: Response) => {
     const result = await Recipe.findOneAndUpdate({ id }, { $set: updatedRecipe }, { new: true });
     if (!result) {
       return res.status(404).json({
-        message: 'Recipe not found. Please check the ID and try again.',
+        error: { message: 'Recipe not found. Please check the ID and try again.' },
       });
     }
     return res.status(200).json({ id: result.id, title: result.title });
@@ -324,14 +324,14 @@ export const deleteRecipe = async (req: AuthedRequest, res: Response) => {
   const id = parseInt(req.params.id, 10);
 
   if (isNaN(id)) {
-    return res.status(400).json({ error: 'Invalid recipe ID' });
+    return res.status(400).json({ error: { message: 'Invalid recipe ID' } });
   }
 
   try {
     const result = await Recipe.findOneAndDelete({ id });
     if (!result) {
       return res.status(404).json({
-        message: 'Recipe not found. Please check the ID and try again.',
+        error: { message: 'Recipe not found. Please check the ID and try again.' },
       });
     }
     return res.status(200).json({ success: true, deletedRecipe: result });
