@@ -7,6 +7,7 @@ import bodyParser from "body-parser";
 import * as Recipe from "./controllers/recipe";
 import * as User from "./controllers/user";
 import { isAuthenticated } from "./middleware";
+import { errorHandler, notFoundHandler } from "./errors/errorHandler";
 
 dotenv.config();
 
@@ -78,6 +79,9 @@ app.post("/signout", isAuthenticated, User.signout);
 app.get("/user", User.getUserProfile);
 // app.put('/user/:id', isAuthenticated, User.updateUser);
 // app.delete('/user/:id', isAuthenticated, User.deleteUser);
+
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
