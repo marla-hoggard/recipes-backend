@@ -1,17 +1,13 @@
 import Recipe, { Category, IRecipe } from '../models/recipe';
 import { AuthedRequest, OpenRequest, Response } from '../types';
+import { ApiError } from '../errors/ApiError';
 
 /**
  * Returns all recipes, sorted alphabetically by title.
  */
 export const getAllRecipes = async (req: OpenRequest, res: Response) => {
-  try {
-    const recipes = await Recipe.find({}).sort({ title: 1 }).lean();
-    return res.status(200).json({ data: recipes });
-  } catch (error) {
-    console.error('Error fetching recipes:', error);
-    return res.status(500).json({ error: { message: 'Error fetching recipes. Please try again later.' } });
-  }
+  const recipes = await Recipe.find({}).sort({ title: 1 }).lean();
+  return res.status(200).json({ data: recipes });
 };
 
 /**
@@ -23,7 +19,7 @@ export const getAllRecipes = async (req: OpenRequest, res: Response) => {
 export const getRecipeById = async (req: OpenRequest, res: Response) => {
   const id = parseInt(req.params.id, 10);
   if (isNaN(id)) {
-    return res.status(400).json({ error: 'Invalid recipe ID' });
+    throw new ApiError({ message: 'Invalid recipe ID' });
   }
 
   // TODO: Consider using _id or slug and getting rid of the legacy id field
@@ -31,56 +27,56 @@ export const getRecipeById = async (req: OpenRequest, res: Response) => {
   if (result) {
     return res.status(200).json(result);
   }
-  return res.status(404).json({ error: 'Recipe not found' });
+  throw new ApiError({ status: 404, message: 'Recipe not found' });
 };
 
 export const createRecipe = async (req: AuthedRequest, res: Response) => {
   if (!req.body.title) {
-    return res.status(400).json({ error: { message: "'title' is required" } });
+    throw new ApiError({ message: "'title' is required" });
   }
 
   if (!req.body.submitted_by) {
-    return res.status(400).json({ error: { message: "'submitted_by' is required" } });
+    throw new ApiError({ message: "'submitted_by' is required" });
   }
 
   if (!req.body.category) {
-    return res.status(400).json({ error: { message: "'category' is required" } });
+    throw new ApiError({ message: "'category' is required" });
   }
 
   if (!req.body.ingredients || !req.body.ingredients.length) {
-    return res.status(400).json({ error: { message: 'At least one ingredient is required' } });
+    throw new ApiError({ message: 'At least one ingredient is required' });
   }
 
   if (!Array.isArray(req.body.ingredients)) {
-    return res.status(400).json({ error: { message: "Type Error: 'ingredients' must be an array" } });
+    throw new ApiError({ message: "Type Error: 'ingredients' must be an array" });
   }
 
   if (!req.body.steps || !req.body.steps.length) {
-    return res.status(400).json({ error: { message: 'At least one step is required' } });
+    throw new ApiError({ message: 'At least one step is required' });
   }
 
   if (!Array.isArray(req.body.steps)) {
-    return res.status(400).json({ error: { message: "Type Error: 'steps' must be an array" } });
+    throw new ApiError({ message: "Type Error: 'steps' must be an array" });
   }
 
   if (req.body.tags && !Array.isArray(req.body.tags)) {
-    return res.status(400).json({ error: { message: "Type Error: 'tags' must be an array" } });
+    throw new ApiError({ message: "Type Error: 'tags' must be an array" });
   }
 
   if (req.body.tags && req.body.tags.some((el: any) => typeof el !== 'string')) {
-    return res.status(400).json({ error: { message: "Type Error: All 'tags' must be of type string" } });
+    throw new ApiError({ message: "Type Error: All 'tags' must be of type string" });
   }
 
   if (req.body.footnotes && !Array.isArray(req.body.footnotes)) {
-    return res.status(400).json({ error: { message: "Type Error: 'footnotes' must be an array" } });
+    throw new ApiError({ message: "Type Error: 'footnotes' must be an array" });
   }
 
   if (req.body.source && typeof req.body.source !== 'string') {
-    return res.status(400).json({ error: { message: "Type Error: 'source' must be a string" } });
+    throw new ApiError({ message: "Type Error: 'source' must be a string" });
   }
 
   if (req.body.source_url && typeof req.body.source_url !== 'string') {
-    return res.status(400).json({ error: { message: "Type Error: 'source_url' must be a string" } });
+    throw new ApiError({ message: "Type Error: 'source_url' must be a string" });
   }
 
   const lastId = await Recipe.findOne({}).sort({ id: -1 }).select('id').lean();
@@ -104,14 +100,15 @@ export const createRecipe = async (req: AuthedRequest, res: Response) => {
   try {
     const result = await Recipe.insertOne(newRecipe);
     if (!result) {
-      return res.status(400).json({
-        message: 'Error creating recipe. Please check the data and try again.',
-      });
+      throw new ApiError({ message: 'Error creating recipe. Please check the data and try again.' });
     }
     return res.status(200).json({ id: result.id, title: result.title });
   } catch (error) {
+    if (error instanceof ApiError) {
+      throw error;
+    }
     console.error('Error creating recipe:', error);
-    return res.status(400).json({ error: { message: (error as any).message } });
+    throw new ApiError({ message: (error as Error).message });
   }
 };
 
@@ -120,31 +117,31 @@ export const editRecipe = async (req: AuthedRequest, res: Response) => {
   const id = parseInt(req.params.id);
 
   if (!Object.keys(req.body).length) {
-    return res.status(400).json({ error: { message: 'You must include data to update in the request body.' } });
+    throw new ApiError({ message: 'You must include data to update in the request body.' });
   }
 
   if (req.body.tags && !Array.isArray(req.body.tags)) {
-    return res.status(400).json({ error: { message: "Type Error: 'tags' must be an array" } });
+    throw new ApiError({ message: "Type Error: 'tags' must be an array" });
   }
 
   if (req.body.tags && req.body.tags.some((el: any) => typeof el !== 'string')) {
-    return res.status(400).json({ error: { message: "Type Error: All 'tags' must be of type string" } });
+    throw new ApiError({ message: "Type Error: All 'tags' must be of type string" });
   }
 
   if (req.body.ingredients && !Array.isArray(req.body.ingredients)) {
-    return res.status(400).json({ error: { message: "Type Error: 'ingredients' must be an array" } });
+    throw new ApiError({ message: "Type Error: 'ingredients' must be an array" });
   }
 
   if (req.body.steps && !Array.isArray(req.body.steps)) {
-    return res.status(400).json({ error: { message: "Type Error: 'steps' must be an array" } });
+    throw new ApiError({ message: "Type Error: 'steps' must be an array" });
   }
 
   if (req.body.source && typeof req.body.source !== 'string') {
-    return res.status(400).json({ error: { message: "Type Error: 'source' must be a string" } });
+    throw new ApiError({ message: "Type Error: 'source' must be a string" });
   }
 
   if (req.body.source_url && typeof req.body.source_url !== 'string') {
-    return res.status(400).json({ error: { message: "Type Error: 'source_url' must be a string" } });
+    throw new ApiError({ message: "Type Error: 'source_url' must be a string" });
   }
 
   const updatedRecipe = Object.fromEntries(
@@ -169,14 +166,15 @@ export const editRecipe = async (req: AuthedRequest, res: Response) => {
   try {
     const result = await Recipe.findOneAndUpdate({ id }, { $set: updatedRecipe }, { new: true });
     if (!result) {
-      return res.status(404).json({
-        message: 'Recipe not found. Please check the ID and try again.',
-      });
+      throw new ApiError({ status: 404, message: 'Recipe not found. Please check the ID and try again.' });
     }
     return res.status(200).json({ id: result.id, title: result.title });
   } catch (error) {
+    if (error instanceof ApiError) {
+      throw error;
+    }
     console.error('Error updating recipe:', error);
-    return res.status(400).json({ error: { message: (error as any).message } });
+    throw new ApiError({ message: (error as Error).message });
   }
 };
 
@@ -279,11 +277,9 @@ export const searchRecipes = async (req: OpenRequest, res: Response) => {
   }
 
   if (!filterParts.length) {
-    return res.status(400).json({
-      error: {
-        message:
-          'At least one search parameter is required. Supported params: title, source, submitted_by, category, vegetarian, featured, steps, footnotes, tags, ingredients, wildcard',
-      },
+    throw new ApiError({
+      message:
+        'At least one search parameter is required. Supported params: title, source, submitted_by, category, vegetarian, featured, steps, footnotes, tags, ingredients, wildcard',
     });
   }
 
@@ -300,7 +296,7 @@ export const searchRecipes = async (req: OpenRequest, res: Response) => {
   if (req.query.limit) {
     const limit = parseInt(req.query.limit as string, 10);
     if (isNaN(limit) || limit < 1) {
-      return res.status(400).json({ error: { message: "'limit' must be a positive integer" } });
+      throw new ApiError({ message: "'limit' must be a positive integer" });
     }
 
     const data = await Recipe.find(filter).sort({ title: 1 }).limit(limit).lean();
@@ -309,10 +305,10 @@ export const searchRecipes = async (req: OpenRequest, res: Response) => {
 
   try {
     const data = await Recipe.find(filter).sort({ title: 1 }).lean();
-    res.status(200).json({ data });
+    return res.status(200).json({ data });
   } catch (error) {
     console.error('Error searching for recipes:', error, 'with filter:', filter);
-    res.status(500).json({ error: { message: (error as any).message } });
+    throw error;
   }
 };
 
@@ -324,21 +320,14 @@ export const deleteRecipe = async (req: AuthedRequest, res: Response) => {
   const id = parseInt(req.params.id, 10);
 
   if (isNaN(id)) {
-    return res.status(400).json({ error: 'Invalid recipe ID' });
+    throw new ApiError({ message: 'Invalid recipe ID' });
   }
 
-  try {
-    const result = await Recipe.findOneAndDelete({ id });
-    if (!result) {
-      return res.status(404).json({
-        message: 'Recipe not found. Please check the ID and try again.',
-      });
-    }
-    return res.status(200).json({ success: true, deletedRecipe: result });
-  } catch (error) {
-    console.error('Error deleting recipe:', error);
-    return res.status(500).json({ error: { message: 'Error deleting recipe. Please try again later.' } });
+  const result = await Recipe.findOneAndDelete({ id });
+  if (!result) {
+    throw new ApiError({ status: 404, message: 'Recipe not found. Please check the ID and try again.' });
   }
+  return res.status(200).json({ success: true, deletedRecipe: result });
 };
 
 /**

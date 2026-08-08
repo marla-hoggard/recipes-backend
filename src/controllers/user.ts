@@ -2,6 +2,7 @@ import User, { IUser } from '../models/user';
 import { AuthedRequest, OpenRequest, Response } from '../types';
 import { checkPassword, hashPassword } from '../utils/password';
 import { v4 as uuid } from 'uuid';
+import { ApiError } from '../errors/ApiError';
 
 /**
  * Creates a new user.
@@ -16,19 +17,19 @@ export const signup = async (req: OpenRequest, res: Response) => {
   const userReq = req.body;
 
   if (!userReq.first_name) {
-    return res.status(400).json({ error: 'First name is required' });
+    throw new ApiError({ message: 'First name is required' });
   }
   if (!userReq.last_name) {
-    return res.status(400).json({ error: 'Last name is required' });
+    throw new ApiError({ message: 'Last name is required' });
   }
   if (!userReq.email) {
-    return res.status(400).json({ error: 'Email is required' });
+    throw new ApiError({ message: 'Email is required' });
   }
   if (!userReq.username) {
-    return res.status(400).json({ error: 'Username is required' });
+    throw new ApiError({ message: 'Username is required' });
   }
   if (!userReq.password) {
-    return res.status(400).json({ error: 'Password is required' });
+    throw new ApiError({ message: 'Password is required' });
   }
 
   try {
@@ -56,9 +57,10 @@ export const signup = async (req: OpenRequest, res: Response) => {
   } catch (error: any) {
     if (error.code === 11000 || error.message.includes('duplicate key error')) {
       const field = Object.keys(error.keyValue)[0];
-      return res.status(400).json({ error: `A user with that ${field} already exists.` });
+      throw new ApiError({ message: `A user with that ${field} already exists.` });
     }
-    return res.status(500).json({ error: error.details || 'Something went wrong. Please try again.' });
+    console.error('Error creating user:', error);
+    throw new ApiError({ status: 500, message: error.details || 'Something went wrong. Please try again.' });
   }
 };
 
@@ -69,27 +71,27 @@ export const signup = async (req: OpenRequest, res: Response) => {
 export const signin = async (req: OpenRequest, res: Response) => {
   const userReq = req.body;
   if (!userReq.username) {
-    return res.status(400).json({ error: 'Username is required' });
+    throw new ApiError({ message: 'Username is required' });
   }
   if (!userReq.password) {
-    return res.status(400).json({ error: 'Password is required' });
+    throw new ApiError({ message: 'Password is required' });
   }
 
   const user = await User.findOne({ username: userReq.username }).lean();
   if (!user) {
-    return res.status(401).json({ error: 'Username or password is invalid.' });
+    throw new ApiError({ status: 401, message: 'Username or password is invalid.' });
   }
 
   const isValidPassword = await checkPassword(user, userReq.password);
   if (!isValidPassword) {
-    return res.status(401).json({ error: 'Username or password is invalid.' });
+    throw new ApiError({ status: 401, message: 'Username or password is invalid.' });
   }
 
   const newToken = uuid();
   const userToReturn = await User.findOneAndUpdate({ _id: user._id }, { token: newToken }, { new: true }).lean();
 
   if (!userToReturn) {
-    return res.status(500).json({ error: 'Something went wrong. Please try again.' });
+    throw new ApiError({ status: 500, message: 'Something went wrong. Please try again.' });
   }
   return res.status(200).json({ user: userToReturn });
 };
@@ -114,7 +116,7 @@ export const getUserProfile = async (req: OpenRequest, res: Response) => {
   const { username, token } = req.query;
 
   if (!username && !token) {
-    return res.status(400).json({ error: 'A username or token query param is required.' });
+    throw new ApiError({ message: 'A username or token query param is required.' });
   }
 
   let user: IUser | null = null;
@@ -125,7 +127,7 @@ export const getUserProfile = async (req: OpenRequest, res: Response) => {
   }
 
   if (!user) {
-    return res.status(404).json({ error: 'User not found.' });
+    throw new ApiError({ status: 404, message: 'User not found.' });
   }
 
   return res.status(200).json({
@@ -142,9 +144,9 @@ export const getUserProfile = async (req: OpenRequest, res: Response) => {
 };
 
 export const updateUser = async (req: AuthedRequest, res: Response) => {
-  return res.status(501).send('Not implemented yet');
+  throw new ApiError({ status: 501, message: 'Not implemented yet' });
 };
 
 export const deleteUser = async (req: AuthedRequest, res: Response) => {
-  return res.status(501).send('Not implemented yet');
+  throw new ApiError({ status: 501, message: 'Not implemented yet' });
 };
