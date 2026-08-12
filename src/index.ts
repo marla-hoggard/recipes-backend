@@ -6,7 +6,7 @@ import helmet from "helmet";
 import bodyParser from "body-parser";
 import * as Recipe from "./controllers/recipe";
 import * as User from "./controllers/user";
-import { isAuthenticated, isAuthorOrAdmin } from "./middleware";
+import { requireAuth, requireAuthorOrAdmin } from "./middleware";
 import { errorHandler, notFoundHandler } from "./errors/errorHandler";
 
 dotenv.config();
@@ -63,10 +63,10 @@ app.get("/", (request, response) => {
 // Recipe Routes
 app.get("/recipes", Recipe.getAllRecipes);
 app.get("/recipe/:id", Recipe.getRecipeById);
-app.post("/recipe/new", isAuthenticated, Recipe.createRecipe);
-app.put("/recipe/:id", isAuthorOrAdmin, Recipe.editRecipe);
+app.post("/recipe/new", requireAuth(Recipe.createRecipe));
+app.put("/recipe/:id", requireAuthorOrAdmin(Recipe.editRecipe));
 app.get("/search", Recipe.searchRecipes);
-app.delete("/recipe/:id", isAuthorOrAdmin, Recipe.deleteRecipe);
+app.delete("/recipe/:id", requireAuthorOrAdmin(Recipe.deleteRecipe));
 
 app.get("/categories", Recipe.listCategories);
 app.get("/tags", Recipe.listTags);
@@ -75,10 +75,10 @@ app.get("/submitters", Recipe.listSubmitters);
 // User Routes
 app.post("/signup", User.signup);
 app.post("/signin", User.signin);
-app.post("/signout", isAuthenticated, User.signout);
+app.post("/signout", requireAuth(User.signout));
 app.get("/user", User.getUserProfile);
-// app.put('/user/:id', isAuthenticated, User.updateUser);
-// app.delete('/user/:id', isAuthenticated, User.deleteUser);
+// app.put('/user/:id', requireAuth(User.updateUser));
+// app.delete('/user/:id', requireAuth(User.deleteUser));
 
 app.use(notFoundHandler);
 app.use(errorHandler);

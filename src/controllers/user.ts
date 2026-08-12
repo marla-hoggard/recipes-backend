@@ -102,8 +102,7 @@ export const signin = async (req: OpenRequest, res: Response) => {
  * Must be signed in to access this route.
  */
 export const signout = async (req: AuthedRequest, res: Response) => {
-  const userId = (req as any).user._id;
-  await User.updateOne({ _id: userId }, { token: null });
+  await User.updateOne({ _id: req.user._id }, { token: null });
   return res.status(200).json({ success: true });
 };
 
