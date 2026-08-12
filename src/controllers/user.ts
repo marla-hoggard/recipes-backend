@@ -3,6 +3,7 @@ import { AuthedRequest, OpenRequest, Response } from '../types';
 import { checkPassword, hashPassword } from '../utils/password';
 import { v4 as uuid } from 'uuid';
 import { ApiError } from '../errors/ApiError';
+import { getBearerToken } from '../middleware';
 
 /**
  * Creates a new user.
@@ -99,24 +100,24 @@ export const signin = async (req: OpenRequest, res: Response) => {
 /**
  * Signs out a user by clearing their auth token.
  * Must be signed in to access this route.
- * TODO: Make FE work with token in header
  */
 export const signout = async (req: AuthedRequest, res: Response) => {
-  const userId = (req as any).user._id;
-  await User.updateOne({ _id: userId }, { token: null });
+  await User.updateOne({ _id: req.user._id }, { token: null });
   return res.status(200).json({ success: true });
 };
 
 /**
- * Looks up a user by the provided query params. Supported params:
- * - username
- * - token
+ * Looks up a user, either by the `username` query param (public lookup) or
+ * by the bearer token in the `Authorization` header (self lookup).
  */
 export const getUserProfile = async (req: OpenRequest, res: Response) => {
-  const { username, token } = req.query;
+  const { username } = req.query;
+  const token = getBearerToken(req);
 
   if (!username && !token) {
-    throw new ApiError({ message: 'A username or token query param is required.' });
+    throw new ApiError({
+      message: 'A username query param or Authorization header is required.',
+    });
   }
 
   let user: IUser | null = null;
